@@ -8,9 +8,9 @@ pipeline {
 
     stages {
             stage('Cloning our Git') {
-                
-                checkout scm
-
+                steps {
+                    checkout scm
+                }
             }
 
             stage('Building Docker Image') {
