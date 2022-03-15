@@ -7,15 +7,9 @@ pipeline {
     }
 
     stages {
-            stage('Cloning our Git') {
-                steps {
-                    checkout scm
-                }
-            }
-
             stage('Building Docker Image') {
                 steps {
-                    sh 'cd /node'
+                    sh 'cd /var/lib/jenkins/workspace/api-pipeline/node'
                     sh 'sudo docker build -t movie-analyst-ui .'
                 }
             }
