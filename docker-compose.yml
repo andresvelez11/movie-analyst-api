@@ -1,0 +1,12 @@
+services:
+  node:
+    build:
+      context: ./node
+      dockerfile: dockerfile
+    image: node-api
+    container_name: node-api
+    hostname: node-api
+    env_file:
+      - ./node/.env
+    network_mode: "host"
+
