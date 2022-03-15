@@ -9,9 +9,9 @@ pipeline {
     stages {
             stage('Building Docker Image') {
                 steps {
-                    sh 'cd /var/lib/jenkins/workspace/api-pipeline/node/'
-                    sh 'pwd'
-                    sh 'docker build -t movie-analyst-ui .'
+                    dir('/node') {
+                        sh "docker build -t movie-analyst-ui ."
+                    }
                 }
             }
 
