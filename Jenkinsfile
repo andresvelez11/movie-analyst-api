@@ -8,9 +8,9 @@ pipeline {
 
     stages {
             stage('Cloning our Git') {
-                steps {
-                    git 'https://github.com/andresvelez11/movie-analyst-api.git'
-                }
+                
+                checkout scm
+
             }
 
             stage('Building Docker Image') {
