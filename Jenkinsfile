@@ -9,7 +9,7 @@ pipeline {
     stages {
             stage('Building Docker Image') {
                 steps {
-                    dir({'/var/lib/jenkins/workspace/api-pipeline/node/') {
+                    dir('/var/lib/jenkins/workspace/api-pipeline/node/') {
                         sh "docker build -t movie-analyst-ui ."
                     }
                 }
