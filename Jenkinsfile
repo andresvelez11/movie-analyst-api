@@ -1,24 +1,32 @@
 pipeline {
-    
     agent any
 
     environment {
-        DOCKER_HUB_CREDS = credentials ('docker-hub')
+        ARTIFACT_ID = "andresvelez11/movie-analyst-api:${env.BUILD_ID}"
     }
 
     stages {
-            stage('Building Docker Image') {
-                steps {
-                    dir('/var/lib/jenkins/workspace/api-pipeline/node') {
-                        sh "docker build -t movie-analyst-ui ."
-                    }
-                }
-            }
-
-            stage('Deploying Docker Image to Dockerhub') {
-                steps {
-                    sh 'docker push movie-analyst-ui:latest'
+        stage("Build Docker Image"){
+            steps{
+                script {
+                    customImage = docker.build("${env.ARTIFACT_ID}")
+                    customImage = docker.build("andresvelez11/movie-analyst-api:latest")
                 }
             }
         }
-    }
+
+        stage("Publish Docker Image in DockerHub"){
+            steps {
+                script {
+                    docker.withRegistry("https://hub.docker.com/repository/docker/andresvelez11/movie-analyst-api", "docker-hub") {
+                        customImage.push()
+                        latestImage.push()
+                    }
+                }
+            }   
+        }
+
+    }  
+
+
+}
