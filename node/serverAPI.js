@@ -11,6 +11,8 @@ var connection = mysql.createConnection({
   database: process.env.DB_NAME,
 });
 
+//Holi
+
 connection.connect((err) => {
   if (err) throw err;
   console.log("Connected to database");
