@@ -11,7 +11,7 @@ var connection = mysql.createConnection({
   database: process.env.DB_NAME,
 });
 
-//Holi
+//Hello
 
 connection.connect((err) => {
   if (err) throw err;
