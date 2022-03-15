@@ -17,7 +17,7 @@ pipeline {
 
             stage('Deploying Docker Image to Dockerhub') {
                 steps {
-                    sh 'docker push andresvelez11/movie-analyst-ui:movie-analyst-ui'
+                    sh 'docker push movie-analyst-ui:latest'
                 }
             }
         }
