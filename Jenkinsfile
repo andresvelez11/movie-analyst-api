@@ -2,10 +2,6 @@ pipeline {
     
     agent any
 
-    environment {
-        DOCKER_HUB_CREDS = credentials ('docker-hub')
-    }
-
     stages {
             stage('Building Docker Image') {
                 steps {
@@ -22,4 +18,3 @@ pipeline {
             }
         }
     }
-}
