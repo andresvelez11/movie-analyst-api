@@ -23,7 +23,7 @@ pipeline {
                 }
             }
 
-            stage('Building Docker Image') {
+            stage('Testing') {
                 steps {
                     dir('/var/lib/jenkins/workspace/api-pipeline/node/') {
                         sh "docker run --network=host -e DB_HOST=${DB_HOST} \
