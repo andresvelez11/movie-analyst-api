@@ -23,6 +23,18 @@ pipeline {
                 }
             }
 
+            stage('Building Docker Image') {
+                steps {
+                    dir('/var/lib/jenkins/workspace/api-pipeline/node/') {
+                        sh "docker run --network=host -e DB_HOST=${DB_HOST} \
+                            -e DB_USER=${DB_USER} \
+                            -e DB_PASS=${DB_PASS} \
+                            -e DB_NAME=${DB_NAME} \
+                            -e PORT_API=${PORT_API} --name movie-api movie-api-image npm test"
+                    }
+                }
+            }
+
             stage('Deploying Docker Image to Dockerhub') {
                 steps {
                     sh 'docker push andresvelez11/movie-analyst-api:latest'
