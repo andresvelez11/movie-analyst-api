@@ -27,6 +27,12 @@ pipeline {
                 steps {
                     dir('/var/lib/jenkins/workspace/api-pipeline/node/') {
                         sh "pwd"
+                        sh "docker run --network=host -e DB_HOST=${DB_HOST} \
+                            -e DB_USER=${DB_USER} \
+                            -e DB_PASS=${DB_PASS} \
+                            -e DB_NAME=${DB_NAME} \
+                            -e PORT_API=${PORT_API} --name test-api andresvelez11/movie-analyst-api npm test"
+                        sh "docker rm test-api"
                     }
                 }
             }
