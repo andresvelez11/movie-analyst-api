@@ -26,7 +26,7 @@ pipeline {
             stage('Testing') {
                 steps {
                     dir('/var/lib/jenkins/workspace/api-pipeline/node/') {
-                        sh "printenv DB_HOST"
+                        sh "env"
                         
                     }
                 }
