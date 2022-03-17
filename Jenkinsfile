@@ -4,11 +4,6 @@ pipeline {
 
     environment {
 		DOCKERHUB_CREDENTIALS=credentials('docker-hub')
-        DB_HOST="${DB_HOST}"
-        DB_USER="${DB_USER}"
-        DB_PASS="${DB_PASS}"
-        DB_NAME="${DB_NAME}"
-        PORT_API="${PORT_API}"
 	}
 
     stages {
@@ -31,8 +26,12 @@ pipeline {
             stage('Testing') {
                 steps {
                     dir('/var/lib/jenkins/workspace/api-pipeline/node/') {
-                        sh "env"
-                        
+                        sh "docker run --network=host -e DB_HOST=${DB_HOST} \
+                            -e DB_USER=${DB_USER} \
+                            -e DB_PASS=${DB_PASS} \
+                            -e DB_NAME=${DB_NAME} \
+                            -e PORT_API=${PORT_API} --name test-api andresvelez11/movie-analyst-api npm test"
+                        sh "docker rm test-api"                        
                     }
                 }
             }
