@@ -4,6 +4,11 @@ pipeline {
 
     environment {
 		DOCKERHUB_CREDENTIALS=credentials('docker-hub')
+        DB_HOST=${DB_HOST}
+        DB_USER=${DB_USER}
+        DB_PASS=${DB_PASS}
+        DB_NAME=${DB_NAME}
+        PORT_API=${PORT_API}
 	}
 
     stages {
