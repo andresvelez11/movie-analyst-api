@@ -30,8 +30,8 @@ pipeline {
                             -e DB_USER=${DB_USER} \
                             -e DB_PASS=${DB_PASS} \
                             -e DB_NAME=${DB_NAME} \
-                            -e PORT_API=${PORT_API} --name andresvelez11/movie-analyst-api andresvelez11/movie-analyst-api npm test"
-                        sh "docker rm andresvelez11/movie-analyst-api"
+                            -e PORT_API=${PORT_API} --name test-api andresvelez11/movie-analyst-api npm test"
+                        sh "docker rm test-api"
                     }
                 }
             }
