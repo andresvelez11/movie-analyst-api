@@ -14,7 +14,7 @@ describe('API', () => {
   * Test the /GET route
   */
   describe('/GET home', () => {
-      it('Home Page is Working', (done) => {
+      it('Home is Working', (done) => {
         chai.request(server)
             .get('/')
             .end((err, res) => {
@@ -23,7 +23,7 @@ describe('API', () => {
             });
       });
 
-      it('Movies Page is Working', (done) => {
+      it('Movies is Working', (done) => {
         chai.request(server)
             .get('/movies')
             .end((err, res) => {
@@ -32,7 +32,7 @@ describe('API', () => {
             });
       });
 
-      it('Reviewers Page is Working', (done) => {
+      it('Reviewers is Working', (done) => {
         chai.request(server)
             .get('/reviewers')
             .end((err, res) => {
@@ -41,7 +41,7 @@ describe('API', () => {
             });
       });
 
-      it('Publications Page is Working', (done) => {
+      it('Publications is Working', (done) => {
         chai.request(server)
             .get('/publications')
             .end((err, res) => {
