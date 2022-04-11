@@ -8,11 +8,13 @@ pipeline {
 
     stages {
 
-            try{
-                sh "docker stop $(docker ps -aq); docker rm $(docker ps -aq)"
-            }    
-            catch (err){
-                echo "No containers or images to delete"
+            script{
+                try{
+                    sh "docker stop $(docker ps -aq); docker rm $(docker ps -aq)"
+                }    
+                catch (err){
+                    echo "No containers or images to delete"
+                }
             }
 
             stage('Login') {
@@ -46,11 +48,13 @@ pipeline {
             stage('Deploying Docker Image to Dockerhub') {
                 steps {
                     sh 'docker push andresvelez11/movie-analyst-api:latest'
-                    try{
-                        sh "docker stop $(docker ps -aq); docker rm $(docker ps -aq)"
-                    }    
-                    catch (err){
-                        echo "No containers or images to delete"
+                    script{
+                        try{
+                            sh "docker stop $(docker ps -aq); docker rm $(docker ps -aq)"
+                        }    
+                        catch (err){
+                            echo "No containers or images to delete"
+                        }
                     }
                     sh 'docker logout'
                 }
