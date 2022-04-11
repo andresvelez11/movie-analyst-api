@@ -34,7 +34,7 @@ pipeline {
             stage('Deploying Docker Image to Dockerhub') {
                 steps {
                     sh 'docker push andresvelez11/movie-analyst-api:latest'
-                    sh "docker stop $(docker ps -aq); docker rm $(docker ps -aq)"
+                    sh 'docker stop $(docker ps -aq); docker rm $(docker ps -aq)'
                     sh 'docker logout'
                 }
             }
