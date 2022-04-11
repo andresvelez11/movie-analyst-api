@@ -26,7 +26,6 @@ pipeline {
             stage('Testing') {
                 steps {
                     dir('/var/lib/jenkins/workspace/api-pipeline/node/') {
-                        sh "printenv ANDRES"
                         sh "docker run --network=host -e DB_HOST=${DB_HOST} \
                             -e DB_USER=${DB_USER} \
                             -e DB_PASS=${DB_PASS} \
