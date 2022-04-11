@@ -1,13 +1,10 @@
 version: "3"
 services:
   node:
-    build:
-      context: ./node
-      dockerfile: dockerfile
-    image: node-api
-    container_name: node-api
-    hostname: node-api
+    image: andresvelez11/movie-analyst-api
+    container_name: docker
+    hostname: docker
     env_file:
-      - ./node/.env
+      - .env
     network_mode: "host"
 

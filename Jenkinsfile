@@ -23,12 +23,6 @@ pipeline {
                 }
             }
 
-            stage('Hola') {
-                steps {
-                    sh"echo ${params.DB_NAME}"
-                }
-            }
-
             stage('Testing') {
                 steps {
                     dir('/var/lib/jenkins/workspace/api-pipeline/node/') {
