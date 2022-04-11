@@ -10,7 +10,7 @@ pipeline {
 
             script{
                 try{
-                    sh "docker stop $(docker ps -aq); docker rm $(docker ps -aq)"
+                    docker stop $(docker ps -aq); docker rm $(docker ps -aq)
                 }    
                 catch (err){
                     echo "No containers or images to delete"
@@ -50,7 +50,7 @@ pipeline {
                     sh 'docker push andresvelez11/movie-analyst-api:latest'
                     script{
                         try{
-                            sh "docker stop $(docker ps -aq); docker rm $(docker ps -aq)"
+                            docker stop $(docker ps -aq); docker rm $(docker ps -aq)
                         }    
                         catch (err){
                             echo "No containers or images to delete"
