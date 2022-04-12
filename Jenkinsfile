@@ -34,7 +34,7 @@ pipeline {
                 steps {
                     sh 'docker push andresvelez11/movie-analyst-api:latest'
                     sh 'docker stop $(docker ps -aq); docker rm $(docker ps -aq)'
-                    sh 'docker rmi $(docker images -a -q)'
+                    sh 'docker rmi andresvelez11/movie-analyst-api'
                     sh 'docker logout'
                 }
             }
