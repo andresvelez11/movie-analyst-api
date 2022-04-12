@@ -26,8 +26,7 @@ pipeline {
                             -e DB_USER=${DB_USER} \
                             -e DB_PASS=${DB_PASS} \
                             -e DB_NAME=${DB_NAME} \
-                            -e PORT_API=${PORT_API} --name test-api andresvelez11/movie-analyst-api npm test"
-                        sh "docker rm test-api"                        
+                            -e PORT_API=${PORT_API} --name test-api andresvelez11/movie-analyst-api npm test"                        
                     }
                 }
             }
@@ -35,7 +34,13 @@ pipeline {
                 steps {
                     sh 'docker push andresvelez11/movie-analyst-api:latest'
                     sh 'docker stop $(docker ps -aq); docker rm $(docker ps -aq)'
+                    sh 'docker rmi $(docker images -a -q)'
                     sh 'docker logout'
+                }
+            }
+            stage('Deploying Docker Image to AWS Instances') {
+                steps {
+                    sh 'ansible-playbook env_automation.yml; ansible-playbook  deployment.yml; ansible-playbook back.yml'
                 }
             }
         }
