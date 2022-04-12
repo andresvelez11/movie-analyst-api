@@ -40,7 +40,9 @@ pipeline {
             }
             stage('Deploying Docker Image to AWS Instances') {
                 steps {
+                    dir('home/ubuntu/ansible') {
                     sh 'ansible-playbook env_automation.yml; ansible-playbook  deployment.yml; ansible-playbook back.yml'
+                    }
                 }
             }
         }
